@@ -10,7 +10,8 @@ class HomePage(BasePage):
         self.button_manage_location = '//*[@id="body-home-index"]/div[1]/div/div/div/ul[1]/li[5]/ul/div/div[1]/div/div/a'
         self.viewbtn_addington_location = '//*[@id="1442"]/td[7]/a'
         self.signin_sidebar_button = '//*[@id="sidebar_kiosks"]/a'
-        self.all_status = 'div[originalTitle]:not([class*="no-listing"])'
+        self.all_status = 'tr[id]:not([class*="no-id"])'
+        self.status_title = 'tr[id]:not([class*="no-id"]) div[class = "status-box status-mini status-online"'
 
     def navigate_to_locations(self):
         self.click(self.dropdown_locations)
@@ -24,8 +25,12 @@ class HomePage(BasePage):
         listings = []
         for index, listing in enumerate(self.find_elements(self.all_status)):
             listings.append({
-                'data-original-title': int(listing.get_attribute('data-listingid')),
-                'title': self.listing_title(index)
+                'id': int(listing.get_attribute('id')),
+                'index': index
+                #'originalTitle': self.status_title()
             })
         print(listings)
         return listings
+
+    def status_title(self):
+        return self.find_elements(self.status_title).text
