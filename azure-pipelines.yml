@@ -10,6 +10,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
