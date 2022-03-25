@@ -1,3 +1,3 @@
-base_url = 'https://login.whosonlocation.com'
-user_email = 'Luis.Tolentino@kiwirail.co.nz'
+base_url = ''
+user_email = ''
 user_password = ''
